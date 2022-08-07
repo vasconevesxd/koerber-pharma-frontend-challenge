@@ -1,23 +1,28 @@
 <template>
   <el-autocomplete
     v-model="state"
+    :suffix-icon="Search"
     :fetch-suggestions="querySearchAsync"
     placeholder="Please input"
+    size="large"
     @select="handleSelect"
   />
 </template>
 
 <script lang="ts" setup>
 import { onMounted, ref } from 'vue';
-import { useStore } from 'vuex';
+
 const props = defineProps({
   products: { type: Array, default: () => [], required: true },
 });
-const store = useStore();
+
 let renameKeys = props.products;
+
 renameKeys.forEach((element) => {
-  element['value'] = element['title'];
-  delete element['title'];
+  if (element['title'] !== undefined) {
+    element['value'] = element['title'];
+    delete element['title'];
+  }
 });
 
 const state = ref('');

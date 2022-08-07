@@ -9,8 +9,8 @@
 </template>
 
 <script setup>
-import { RouterLink } from "vue-router";
-import { ref } from "vue";
+import { RouterLink } from 'vue-router';
+import { ref } from 'vue';
 
-const activeIndex = ref("1");
+const activeIndex = ref('1');
 </script>

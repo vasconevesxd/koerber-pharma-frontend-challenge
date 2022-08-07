@@ -1,11 +1,11 @@
 <template>
   <section class="products">
-    <el-row>
-      <el-col :span="12">
+    <el-row justify="space-evenly">
+      <el-col :span="6">
         <InputSearch @onChildUpdate="(n) => onChildUpdate(n)" :products="products" v-if="renderComponent" />
       </el-col>
-      <el-col :span="12">
-        <el-select v-model="orderBy" placeholder="Ordenar Por:">
+      <el-col :span="6">
+        <el-select v-model="orderBy" placeholder="Ordenar Por:" size="large">
           <el-option label="Preço mais alto" value="price_up" />
           <el-option label="Preço mais baixo" value="price_down" />
           <el-option label="Desconto mais alto" value="discount_up" />
@@ -15,7 +15,6 @@
         <el-button type="primary" @click="cleanFilters">Clean</el-button>
       </el-col>
     </el-row>
-
     <template v-if="!isMobile">
       <el-row justify="center">
         <el-space wrap>
@@ -30,8 +29,8 @@
             <el-image :src="`${product.thumbnail}`" class="image" fit="cover" style="width: 100%; height: 200px" />
             <div style="padding: 14px">
               <span>{{ product.value }}</span>
-              <div class="bottom">
-                <time class="time">{{ product.price }}</time>
+              <el-row class="card-values">
+                <p>{{ product.price }} €</p>
                 <el-tag
                   :key="product.id"
                   :type="
@@ -40,7 +39,7 @@
                 >
                   {{ product.stock }}
                 </el-tag>
-              </div>
+              </el-row>
             </div>
           </el-card>
         </el-space>
@@ -50,7 +49,7 @@
           v-model:currentPage="pages.currentPage"
           v-model:page-size="pages.pageSize"
           :page-sizes="pages.pageSizeRange"
-          layout="total,sizes, prev, pager, next"
+          layout="prev, pager, next, sizes ,total"
           :total="pages.total"
         />
       </el-row>
@@ -64,7 +63,7 @@
             <div style="padding: 14px">
               <span>{{ product.value }}</span>
               <div class="bottom">
-                <time class="time">{{ product.price }}</time>
+                <time class="time">{{ product.price }} €</time>
                 <el-tag
                   :key="product.id"
                   :type="
@@ -95,7 +94,7 @@ export default {
       search: null,
       renderComponent: true,
       orderBy: null,
-      isMobile: null,
+      isMobile: false,
       gapProducts: null,
     };
   },
@@ -139,16 +138,15 @@ export default {
     handleScroll() {
       if (window.scrollY + window.innerHeight >= document.body.scrollHeight - 600) {
         this.gapProducts += 10;
-        console.log(this.gapProducts);
-
-        this.$store.dispatch('fetchProductLimit', this.gapProducts);
+        if (this.isMobile) {
+          this.$store.dispatch('fetchProductLimit', this.gapProducts);
+        }
       }
     },
     cleanFilters() {
       this.$store.dispatch('fetchProducts');
     },
     onChildUpdate(item) {
-      console.log(item);
       this.$store.dispatch('searchProduct', item);
       this.$store.dispatch('setCurrentPage');
     },
@@ -169,9 +167,12 @@ export default {
 };
 </script>
 
-
 <style>
 .el-row {
   margin-bottom: 20px;
+}
+.card-values{
+  align-items: center;
+  justify-content: space-between;
 }
 </style>
