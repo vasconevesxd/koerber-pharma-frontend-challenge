@@ -1,12 +1,17 @@
 <script setup>
-import { RouterLink, RouterView } from "vue-router";
+import { RouterView } from "vue-router";
+import Navbar from "./components/base/Navbar.vue";
 </script>
 
 <template>
-  <header>
-    <nav>
-      <RouterLink to="/">Products</RouterLink>
-    </nav>
-  </header>
-  <RouterView />
+  <div class="common-layout">
+    <el-container>
+      <el-header>
+        <Navbar />
+      </el-header>
+      <el-main>
+        <RouterView />
+      </el-main>
+    </el-container>
+  </div>
 </template>
