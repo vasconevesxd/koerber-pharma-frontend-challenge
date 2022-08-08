@@ -109,7 +109,7 @@ export default {
     async fetchProductCategoriesLimit({ commit }, value, gap) {
       return new Promise((resolve, reject) => {
         axios
-          .get(`https://dummyjson.com/products/category/${value}?limit=5&skip=${gap}`)
+          .get(`https://dummyjson.com/products/category/${value}?limit=20&skip=${gap}`)
           .then(function (response) {
             commit('GET_PRODUCTS_LIMIT', response.data.products);
             resolve(response);

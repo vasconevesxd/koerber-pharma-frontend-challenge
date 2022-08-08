@@ -1,15 +1,36 @@
 <template>
-  <SideNav />
-  <el-row justify="center">
-    <InputSearch v-if="renderComponent" @onChildUpdate="(n) => onChildUpdate(n)" :products="productsCategory" />
-    <OrderBy :products="productsCategory" />
-    <CardProduct :products="productsCategory" />
-  </el-row>
-  <el-row justify="center">
-    <Pagination :pages="pages" v-if="!isMobile" />
-  </el-row>
+  <el-container>
+    <el-aside width="200px">
+      <SideNav />
+    </el-aside>
+    <el-main>
+      <el-col :span="24">
+        <el-row justify="space-between" class="filters">
+          <InputSearch v-if="renderComponent" @onChildUpdate="(n) => onChildUpdate(n)" :products="productsCategory" />
+          <el-col :span="6">
+            <OrderBy :products="productsCategory" />
+            <el-button class="btn-clean" type="primary" @click="cleanFilters" size="large">Clean Filter</el-button>
+          </el-col>
+        </el-row>
+        <el-row justify="center">
+          <CardProduct :products="productsCategory" />
+        </el-row>
+      </el-col>
+      <el-row justify="center">
+        <Pagination :pages="pages" v-if="!isMobile" />
+      </el-row>
+    </el-main>
+  </el-container>
 </template>
-
+<style lang="scss" scoped>
+.filters {
+  margin-left: 75px;
+  margin-bottom: 40px;
+}
+.btn-clean {
+  margin-left: 20px;
+}
+</style>
 <script>
 import { mapGetters } from 'vuex';
 import SideNav from '../components/base/SideNav.vue';
@@ -53,6 +74,9 @@ export default {
     window.addEventListener('scroll', this.handleScroll);
   },
   methods: {
+    cleanFilters() {
+      this.$store.dispatch('categories/fetchProdutsCategory',this.id);
+    },
     onProductsUpdate(value) {
       console.log(value);
       if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {

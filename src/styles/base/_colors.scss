@@ -46,3 +46,25 @@
     --color-status-yellow: #ffde71;
 }
 
+
+$colors: 
+        'primary' --color-primary,
+        'green' --color-green;
+
+@each $class, $color in $colors {
+    .color-#{$class}{
+        color: var($color);
+    }
+}
+
+@each $class, $color in $colors {
+    .bg-#{$class}{
+        background-color: var($color);
+    }
+}
+
+@each $class, $color in $colors {
+    .b-#{$class}{
+        border-color: var($color);
+    }
+}

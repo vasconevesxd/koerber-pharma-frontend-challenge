@@ -3,7 +3,7 @@
     v-model="state"
     :suffix-icon="Search"
     :fetch-suggestions="querySearchAsync"
-    placeholder="Please input"
+    placeholder="Search product..."
     size="large"
     @select="handleSelect"
   />

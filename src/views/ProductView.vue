@@ -8,13 +8,21 @@
       </el-carousel>
     </el-col>
     <el-col :span="8">
-      {{ product.title }}
-      {{ product.description }}
-      {{ product.price }}
-      {{ product.stock }}
-      <!--<el-input-number v-model="num" :min="1" :max="10" @change="handleChange" />-->
-      <el-button type="primary">Adicionar</el-button>
-      <el-button type="primary">Comprar Já</el-button>
+      <h2>{{ product.title }}</h2>
+      <el-row justify="space-between">
+        <h3 class="color-primary">{{ product.price }} €</h3>
+        <el-tag
+          :key="product.id"
+          :type="product.stock < 90 && product.stock >= 50 ? 'warning' : product.stock < 50 ? 'danger' : 'success'"
+        >
+          {{ product.stock }}
+        </el-tag>
+      </el-row>
+      <p>{{ product.description }}</p>
+      <el-row :span="24" justify="space-between">
+        <el-button size="large" class="bg-primary b-primary" type="primary">Adicionar</el-button>
+        <el-button size="large" type="primary">Comprar Já</el-button>
+      </el-row >
     </el-col>
   </el-row>
 </template>
