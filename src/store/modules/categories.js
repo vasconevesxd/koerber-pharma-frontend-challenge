@@ -2,8 +2,9 @@ import axios from 'axios';
 export default {
   namespaced: true,
   state: {
-    products: [],
-    productsFilter: [],
+    productsCategory: [],
+    productsCategoryFilter: [],
+    categories: [],
     pages: {
       currentPage: 1,
       pageSize: 5,
@@ -12,71 +13,78 @@ export default {
     },
   },
   getters: {
-    getProducts: (state) => state.products,
+    productsCategory: (state) => state.productsCategory,
+    categories: (state) => state.categories,
     pages: (state) => state.pages,
   },
   mutations: {
-    GET_PRODUCTS(state, products) {
-      state.products = products;
+    GET_PRODUCTS(state, productsCategory) {
+      state.productsCategory = productsCategory;
     },
-    GET_PRODUCTS_LIMIT(state, products) {
-      state.products = [...state.products, ...products];
+    GET_PRODUCTS_LIMIT(state, productsCategory) {
+      state.productsCategory = [...state.productsCategory, ...productsCategory];
+    },
+    GET_PRODUCT(state, product) {
+      state.product = product;
     },
     ORDER_BY(state, value) {
       switch (value) {
         case 'price_up':
-          state.productsFilter.sort((a, b) => {
+          state.productsCategoryFilter.sort((a, b) => {
             return b.price - a.price;
           });
           break;
         case 'price_down':
-          state.productsFilter.sort((a, b) => {
+          state.productsCategoryFilter.sort((a, b) => {
             return a.price - b.price;
           });
           break;
         case 'discount_up':
-          state.productsFilter.sort((a, b) => {
+          state.productsCategoryFilter.sort((a, b) => {
             return b.discountPercentage - a.discountPercentage;
           });
           break;
         case 'discount_down':
-          state.productsFilter.sort((a, b) => {
+          state.productsCategoryFilter.sort((a, b) => {
             return a.discountPercentage - b.discountPercentage;
           });
           break;
         default:
-          state.productsFilter.sort((a, b) => {
+          state.productsCategoryFilter.sort((a, b) => {
             return b.rating - a.rating;
           });
       }
     },
     CURRENT_PAGE(state) {
-      if (Array.isArray(state.productsFilter)) {
-        let orderValues = state.productsFilter.slice(
+      if (Array.isArray(state.productsCategoryFilter)) {
+        let orderValues = state.productsCategoryFilter.slice(
           (state.pages.currentPage - 1) * state.pages.pageSize,
           state.pages.currentPage * state.pages.pageSize
         );
-        state.products = orderValues;
+        state.productsCategory = orderValues;
       } else {
-        state.products = [state.productsFilter];
+        state.productsCategory = [state.productsCategoryFilter];
       }
     },
     UPDATE_PAGES(state, limit) {
       state.pages.total = limit;
     },
-    GET_PRODUCTS_FILTER(state, products) {
-      state.productsFilter = products;
+    GET_PRODUCTS_FILTER(state, productsCategory) {
+      state.productsCategoryFilter = productsCategory;
     },
     SEARCH_PRODUCT(state, product) {
       state.pages.total = 1;
-      state.productsFilter = product;
+      state.productsCategoryFilter = product;
+    },
+    GET_PRODUCTS_CATEGORIES(state, categories) {
+      state.categories = categories;
     },
   },
   actions: {
-    async fetchProducts({ commit }) {
+    async fetchProdutsCategory({ commit }, value) {
       return new Promise((resolve, reject) => {
         axios
-          .get('https://dummyjson.com/products')
+          .get(`https://dummyjson.com/products/category/${value}`)
           .then(function (response) {
             commit('GET_PRODUCTS', response.data.products);
             commit('GET_PRODUCTS_FILTER', response.data.products);
@@ -87,10 +95,21 @@ export default {
           .catch((error) => reject(error));
       });
     },
-    async fetchProductLimit({ commit }, gap) {
+    async fetchProductCategories({ commit }) {
       return new Promise((resolve, reject) => {
         axios
-          .get(`https://dummyjson.com/products?limit=5&skip=${gap}`)
+          .get('https://dummyjson.com/products/categories')
+          .then(function (response) {
+            commit('GET_PRODUCTS_CATEGORIES', response.data);
+            resolve(response);
+          })
+          .catch((error) => reject(error));
+      });
+    },
+    async fetchProductCategoriesLimit({ commit }, value, gap) {
+      return new Promise((resolve, reject) => {
+        axios
+          .get(`https://dummyjson.com/products/category/${value}?limit=5&skip=${gap}`)
           .then(function (response) {
             commit('GET_PRODUCTS_LIMIT', response.data.products);
             resolve(response);

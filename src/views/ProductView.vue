@@ -3,7 +3,7 @@
     <el-col :span="8">
       <el-carousel :interval="2000" type="card" height="200px" arrow="always">
         <el-carousel-item v-for="item in product.images" :key="item.id">
-          <el-image style="width: 200px; height: 200px" :src="item" :fit="cover" />
+          <el-image style="width: 200px; height: 200px" :src="item" fit="cover" />
         </el-carousel-item>
       </el-carousel>
     </el-col>
@@ -12,7 +12,7 @@
       {{ product.description }}
       {{ product.price }}
       {{ product.stock }}
-      <el-input-number v-model="num" :min="1" :max="10" @change="handleChange" />
+      <!--<el-input-number v-model="num" :min="1" :max="10" @change="handleChange" />-->
       <el-button type="primary">Adicionar</el-button>
       <el-button type="primary">Comprar Já</el-button>
     </el-col>
@@ -30,12 +30,12 @@ export default {
   },
   computed: {
     ...mapGetters({
-      product: 'getProduct',
+      product: 'product/getProduct',
     }),
   },
   methods: {},
   created() {
-    this.$store.dispatch('fetchProduct', Number(this.id));
+    this.$store.dispatch('product/fetchProduct', Number(this.id));
   },
 };
 </script>

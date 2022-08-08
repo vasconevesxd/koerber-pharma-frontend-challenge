@@ -3,7 +3,7 @@
     <el-menu-item index="0">E-Commerce</el-menu-item>
     <div class="flex-grow" />
     <RouterLink to="/">
-      <el-menu-item index="1"> Products </el-menu-item>
+      <el-menu-item index="1"> Home </el-menu-item>
     </RouterLink>
   </el-menu>
 </template>

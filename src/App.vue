@@ -10,7 +10,7 @@ import Navbar from './components/base/Navbar.vue';
         <Navbar />
       </el-header>
       <el-main>
-        <RouterView />
+        <RouterView :key="$route.path" />
       </el-main>
     </el-container>
   </div>
