@@ -11,13 +11,13 @@
 
 <script lang="ts" setup>
 import { onMounted, ref } from 'vue';
+import { Search } from '@element-plus/icons-vue';
 
 const props = defineProps({
   products: { type: Array, default: () => [], required: true },
 });
 
 let renameKeys = props.products;
-
 renameKeys.forEach((element) => {
   if (element['title'] !== undefined) {
     element['value'] = element['title'];

@@ -1,13 +1,13 @@
 <template>
-  <el-row :gutter="20" justify="center">
-    <el-col :span="8">
+  <el-row :gutter="20" justify="center" class="product-section color-white">
+    <el-col :xs="24" :sm="24" :md="8">
       <el-carousel :interval="2000" type="card" height="200px" arrow="always">
         <el-carousel-item v-for="item in product.images" :key="item.id">
           <el-image style="width: 200px; height: 200px" :src="item" fit="cover" />
         </el-carousel-item>
       </el-carousel>
     </el-col>
-    <el-col :span="8">
+    <el-col :xs="24" :sm="24" :md="8">
       <h2>{{ product.title }}</h2>
       <el-row justify="space-between">
         <h3 class="color-primary">{{ product.price }} €</h3>
@@ -22,7 +22,7 @@
       <el-row :span="24" justify="space-between">
         <el-button size="large" class="bg-primary b-primary" type="primary">Adicionar</el-button>
         <el-button size="large" type="primary">Comprar Já</el-button>
-      </el-row >
+      </el-row>
     </el-col>
   </el-row>
 </template>

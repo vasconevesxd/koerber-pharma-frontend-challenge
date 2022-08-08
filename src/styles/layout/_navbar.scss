@@ -1,0 +1,32 @@
+.el-menu-horizontal {
+  padding-left: 250px !important;
+  align-items: center;
+  &.el-menu {
+    background-color: var(--color-background-off);
+    border-color: var(--color-background-off);
+    color: var(--color-text);
+    .el-menu-center {
+      display: flex;
+      align-items: center;
+
+      .el-icon {
+        margin-left: 10px;
+      }
+    }
+  }
+  .el-menu-item {
+    &.is-active {
+      color: var(--color-primary);
+    }
+    &:not(.is-disabled):hover {
+      background: var(--color-navbar-input-bg);
+      color: var(--color-white);
+    }
+  }
+}
+
+@media only screen and (max-width: 900px) {
+  .el-menu-center {
+    flex-direction: column;
+  }
+}

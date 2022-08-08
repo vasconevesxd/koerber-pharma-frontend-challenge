@@ -1,46 +1,36 @@
 <template>
-  <el-container>
-    <el-aside width="200px">
-      <SideNav />
-    </el-aside>
-    <el-main>
-      <el-col :span="24">
-        <el-row justify="space-between" class="filters">
+  <el-row :gutter="20" class="products-section">
+    <el-col :xs="24" :sm="24" :md="14" :lg="14" class="products-section__content">
+      <h2 class="color-primary">HOT PRODUCTS</h2>
+      <el-row class="filters-section">
+        <el-col :xs="24" :sm="24" :md="10">
           <InputSearch v-if="renderComponent" @onChildUpdate="(n) => onChildUpdate(n)" :products="products" />
-          <el-col :span="6">
+        </el-col>
+        <el-col :xs="24" :sm="24" :md="14">
+          <el-row justify="end">
             <OrderBy :products="products" />
             <el-button class="btn-clean" type="primary" @click="cleanFilters" size="large">Clean Filter</el-button>
-          </el-col>
-        </el-row>
-        <el-row justify="center">
-          <CardProduct :products="products" />
-        </el-row>
-      </el-col>
+          </el-row>
+        </el-col>
+      </el-row>
+      <el-row justify="center">
+        <CardProduct :products="products" />
+      </el-row>
       <el-row justify="center">
         <Pagination :pages="pages" v-if="!isMobile" />
       </el-row>
-    </el-main>
-  </el-container>
+    </el-col>
+  </el-row>
 </template>
-<style lang="scss" scoped>
-.filters {
-  margin-left: 75px;
-  margin-bottom: 40px;
-}
-.btn-clean {
-  margin-left: 20px;
-}
-</style>
+
 <script>
 import { mapGetters } from 'vuex';
-import SideNav from '../components/base/SideNav.vue';
 import Pagination from '../components/ui/Pagination.vue';
 import CardProduct from '../components/ui/CardProduct.vue';
 import InputSearch from '../components/ui/InputSearch.vue';
 import OrderBy from '../components/ui/OrderBy.vue';
 export default {
   components: {
-    SideNav,
     CardProduct,
     Pagination,
     InputSearch,
@@ -71,6 +61,7 @@ export default {
   },
   mounted() {
     window.addEventListener('scroll', this.handleScroll);
+    window.addEventListener('wheel', this.handleScroll);
   },
   methods: {
     cleanFilters() {
@@ -83,6 +74,7 @@ export default {
     handleScroll() {
       if (window.scrollY + window.innerHeight >= document.body.scrollHeight - 600) {
         this.gapProducts += 10;
+   
         if (this.isMobile) {
           this.$store.dispatch('products/fetchProductLimit', this.gapProducts);
         }

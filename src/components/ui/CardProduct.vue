@@ -22,29 +22,6 @@
     </div>
   </el-card>
 </template>
-
-<style lang="scss" scoped>
-.el-card {
-  &:not(:nth-child(5n)) {
-    margin-right: 20px;
-  }
-  margin-bottom: 20px;
-}
-.card-values {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  margin-top: 10px;
-}
-.card-values {
-  p {
-    color: var(--color-primary);
-    font-size: 1.5rem;
-    font-weight: 500;
-  }
-}
-</style>
-
 <script>
 export default {
   props: {

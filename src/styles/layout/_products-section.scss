@@ -1,0 +1,34 @@
+.products-section {
+  height: 100%;
+  .products-section__content {
+    background-color: var(--color-background-off);
+    padding: 20px 40px !important;
+    border-radius: 8px;
+    margin: 0 auto;
+  }
+}
+
+.el-container .el-main {
+  height: calc(100vh - var(--el-header-height));
+}
+
+.filters-section {
+  margin: 20px 0;
+  @media only screen and (max-width: 900px) {
+    & > * {
+      margin-bottom: 20px;
+    }
+   
+  }
+}
+
+.btn-clean {
+  margin-left: 20px;
+  background-color: var(--color-primary);
+  border-color: var(--color-primary);
+  &:hover {
+    background-color: var(--color-text);
+    border-color: var(--color-text);
+    color: var(--color-light-background);
+  }
+}

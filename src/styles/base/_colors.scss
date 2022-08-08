@@ -1,54 +1,20 @@
 :root{
-    --color-body: #161616;
-    --color-body-gray: #161616;
     --color-background: #161616;
+    --color-light-background: #2d2d2d;
     --color-background-off: #282828;
     --color-text: #eee;
-    --color-text-light: #bababa;
-    --color-navbar: #282828;
     --color-navbar-input-bg: #3e3e3e;
-    --color-navbar-input-placeholder: #bababa;
-    --color-navbar-input-placeholder2: #eee;
-    --color-footer: #282828;
-    --color-copyright: #282828;
-    --color-icon: #fff;
     --color-primary: #ff7352;
-    --color-primary-hover: #ff623d;
-    --color-red: #ff6b6b;
-    --color-purple: #f19ce9;
-    --color-green: #70d99e;
-    --color-blue: #5199e7;
-    --color-blue-hover: #3069a6;
-    --color-yellow: #ffde71;
     --color-gray-light: #8d929b;
     --color-gray-medium: #bababa;
-    --color-gray-dark: #f6f6f6;
-    --color-primary-light: #e7b395e5;
-    --color-theme-handle: #4b4b4b;
-    --color-theme-switch: rgb(0,0,0,0.38);
-    --color-filter-btn: #3e3e3e;
-    --color-checkbox-bg: #161616;
-    --color-checkbox-border: #474747;
-    --color-skeleton: #161616;
-    --color-skeleton-glare: #202020;
-    --color-skeleton-bg: #282828;
-    --color-skeleton-bg-glare: #202020;
-    --color-skeleton-off: #161616;
-    --color-skeleton-glare-off: #202020;
-    --color-main-bg-skeleton: #282828;
-    --color-skeleton-lnav: #282828;
-    --color-skeleton-diff-lg: #282828;
-    --color-menu-bg: #161616;
-    --color-border-color: #4a4a4a;
-    --color-input-gray: #929292;
-    --color-visa-logo: #fff;
-    --color-text-oney: #161616;
-    --color-status-yellow: #ffde71;
+
 }
 
 
 $colors: 
         'primary' --color-primary,
+        'gray' --color-background-off,
+        'white'  --color-text,
         'green' --color-green;
 
 @each $class, $color in $colors {

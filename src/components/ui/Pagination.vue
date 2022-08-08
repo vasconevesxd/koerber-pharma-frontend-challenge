@@ -7,7 +7,6 @@
     :total="pages.total"
   />
 </template>
-
 <script>
 export default {
   props: {

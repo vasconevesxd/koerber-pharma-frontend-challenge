@@ -1,0 +1,22 @@
+.el-input {
+    --el-input-text-color: var(--color-text) !important;
+    --el-input-bg-color: var(--color-background) !important;
+    --el-input-border: var(--color-background) !important;
+    .el-input__wrapper {
+      margin-left: 10px;
+      box-shadow: none;
+    }
+  }
+  .el-pagination {
+    --el-pagination-text-color: var(--color-text) !important;
+    --el-pagination-hover-color: var(--color-primary) !important;
+    --el-pagination-bg-color: var(--color-background) !important;
+    --el-pagination-button-disabled-color: var(--color-text) !important;
+    --el-pagination-button-disabled-bg-color: var(--color-background) !important;
+    .el-pagination__total {
+      color: var(--color-text) !important;
+    }
+    .el-pager li {
+      --el-pagination-bg-color: var(--color-background);
+    }
+  }
