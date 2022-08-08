@@ -74,7 +74,7 @@ export default {
     handleScroll() {
       if (window.scrollY + window.innerHeight >= document.body.scrollHeight - 600) {
         this.gapProducts += 10;
-   
+
         if (this.isMobile) {
           this.$store.dispatch('products/fetchProductLimit', this.gapProducts);
         }
